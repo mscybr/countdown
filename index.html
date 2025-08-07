@@ -1,156 +1,38 @@
+<!DOCTYPE html>
+<html>
 <head>
+  <title>Small Telegram Web App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-/* general styling */
-:root {
-  --smaller: .75;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  margin: 0;
+    html, body {
+      margin: 0;
       padding: 0;
       box-sizing: border-box;
       height: auto;
       overflow: hidden;
-}
+    }
 
-body {
-  align-items: center;
-  background-color: #ffd54f;
-  display: flex;
-  font-family: -apple-system, 
-    BlinkMacSystemFont, 
-    "Segoe UI", 
-    Roboto, 
-    Oxygen-Sans, 
-    Ubuntu, 
-    Cantarell, 
-    "Helvetica Neue", 
-    sans-serif;
-}
-
-.container {
-  height: 150px; /* 👈 Fixed height you want */
-        width: 100%;
-
-  color: #333;
-  margin: 0 auto;
-  text-align: center;
-}
-
-h1 {
-  font-weight: normal;
-  letter-spacing: .125rem;
-  text-transform: uppercase;
-}
-
-li {
-  display: inline-block;
-  font-size: 1.5em;
-  list-style-type: none;
-  padding: 1em;
-  text-transform: uppercase;
-}
-
-li span {
-  display: block;
-  font-size: 4.5rem;
-}
-
-.emoji {
-  display: none;
-  padding: 1rem;
-}
-
-.emoji span {
-  font-size: 4rem;
-  padding: 0 .5rem;
-}
-
-@media all and (max-width: 768px) {
-  h1 {
-    font-size: calc(1.5rem * var(--smaller));
-  }
-  
-  li {
-    font-size: calc(1.125rem * var(--smaller));
-  }
-  
-  li span {
-    font-size: calc(3.375rem * var(--smaller));
-  }
-}</style>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
+    .container {
+      height: 150px; /* 👈 Fixed height you want */
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+  </style>
 </head>
-<body dir="rtl">
+<body>
   <div class="container">
-    <h1 id="headline">عداد المزاد</h1>
-    <div id="countdown">
-      <ul>
-        <li><span id="days"></span>يوم</li>
-        <li><span id="hours"></span>ساعة</li>
-        <li><span id="minutes"></span>دقيقة</li>
-        <li><span id="seconds"></span>ثانية</li>
-      </ul>
-    </div>
-    <div id="content" class="emoji">
-     
-    </div>
+    <p>This is a compact Web App</p>
+    <button onclick="Telegram.WebApp.close()">Close</button>
   </div>
+
   <script>
-
-function initialize () {
-  const second = 1000,
-        minute = second * 60,
-        hour = minute * 60,
-        day = hour * 24;
-
- 
-  
-  
-      x = setInterval(function() {    
-
-        const now = new Date().getTime(),
-              distance = countdown - now;
-
-        document.getElementById("days").innerText = Math.floor(distance / (day)),
-          document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
-          document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
-          document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
-
-        //do something later when date is reached
-        if (distance < 0) {
-          document.getElementById("headline").innerText = "انتهت المدة";
-          document.getElementById("countdown").style.display = "none";
-          document.getElementById("content").style.display = "block";
-        }else{
-          document.getElementById("countdown").style.display = "block";
-          document.getElementById("content").style.display = "none";
-        }
-        //seconds
-      }, 0)
-  }
-    var countdown = 0;
-    var init = false;
-    setInterval(async ()=>{
-        js = await fetch("./data.json");
-        l = await js.text()
-        countdown = JSON.parse( l.replaceAll("\n", "")).time
-    }, 1000);
-    setInterval(()=>{
-      if(countdown != 0 && init == false ){
-        init = true;
-        initialize();
-      }
-  }, 1000)
-      Telegram.WebApp.ready();
-    Telegram.WebApp.setResizeable(false);
-    // Telegram.WebApp.expand();
-</script>
+    Telegram.WebApp.ready();
+    // Do NOT call expand() if you want to keep it small
+  </script>
 </body>
+</html>
