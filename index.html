@@ -98,6 +98,12 @@ li span {
     </div>
   </div>
   <script>
+    var countdown = new Date().getTime();
+    setInterval(()=>{
+        js = await fetch("./data.json");
+        l = await js.text()
+        countdown = JSON.parse( l.replaceAll("\n", "")).time
+    });
 (function () {
   const second = 1000,
         minute = second * 60,
@@ -120,7 +126,7 @@ li span {
   }
   //end
   
-  var countDown = new Date(birthday).getTime(),
+  countDown = new Date(birthday).getTime(),
       x = setInterval(function() {    
 
         const now = new Date().getTime(),
@@ -136,7 +142,9 @@ li span {
           document.getElementById("headline").innerText = "It's my birthday!";
           document.getElementById("countdown").style.display = "none";
           document.getElementById("content").style.display = "block";
-          clearInterval(x);
+        }else{
+          document.getElementById("countdown").style.display = "block";
+          document.getElementById("content").style.display = "none";
         }
         //seconds
       }, 0)
