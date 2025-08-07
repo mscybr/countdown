@@ -79,6 +79,8 @@ li span {
     font-size: calc(3.375rem * var(--smaller));
   }
 }</style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 </head>
 <body dir="rtl">
   <div class="container">
@@ -141,5 +143,8 @@ function initialize () {
         initialize();
       }
   }, 1000)
+      Telegram.WebApp.ready();
+    Telegram.WebApp.setResizeable(true);
+    Telegram.WebApp.expand();
 </script>
 </body>
