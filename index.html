@@ -11,12 +11,13 @@
   padding: 0;
 }
 
-html, body {
+html {
   height: 100%;
   margin: 0;
 }
 
 body {
+      height: 200px; /* 👈 Fixed height */
   align-items: center;
   background-color: #ffd54f;
   display: flex;
@@ -144,7 +145,7 @@ function initialize () {
       }
   }, 1000)
       Telegram.WebApp.ready();
-    Telegram.WebApp.setResizeable(true);
-    Telegram.WebApp.expand();
+    // Telegram.WebApp.setResizeable(true);
+    // Telegram.WebApp.expand();
 </script>
 </body>
