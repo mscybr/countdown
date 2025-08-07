@@ -99,7 +99,7 @@ li span {
   </div>
   <script>
     var countdown = new Date().getTime();
-    setInterval(()=>{
+    setInterval(async ()=>{
         js = await fetch("./data.json");
         l = await js.text()
         countdown = JSON.parse( l.replaceAll("\n", "")).time
