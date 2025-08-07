@@ -80,31 +80,24 @@ li span {
   }
 }</style>
 </head>
-<body>
+<body dir="rtl">
   <div class="container">
-    <h1 id="headline">Countdown to my birthday</h1>
+    <h1 id="headline">عداد المزاد</h1>
     <div id="countdown">
       <ul>
-        <li><span id="days"></span>days</li>
-        <li><span id="hours"></span>Hours</li>
-        <li><span id="minutes"></span>Minutes</li>
-        <li><span id="seconds"></span>Seconds</li>
+        <li><span id="days"></span>يوم</li>
+        <li><span id="hours"></span>ساعة</li>
+        <li><span id="minutes"></span>دقيقة</li>
+        <li><span id="seconds"></span>ثانية</li>
       </ul>
     </div>
     <div id="content" class="emoji">
-      <span>🥳</span>
-      <span>🎉</span>
-      <span>🎂</span>
+     
     </div>
   </div>
   <script>
-    var countdown = new Date().getTime();
-    setInterval(async ()=>{
-        js = await fetch("./data.json");
-        l = await js.text()
-        countdown = JSON.parse( l.replaceAll("\n", "")).time
-    }, 1000);
-(function () {
+
+function initialize () {
   const second = 1000,
         minute = second * 60,
         hour = minute * 60,
@@ -125,7 +118,7 @@ li span {
 
         //do something later when date is reached
         if (distance < 0) {
-          document.getElementById("headline").innerText = "It's my birthday!";
+          document.getElementById("headline").innerText = "انتهت المدة";
           document.getElementById("countdown").style.display = "none";
           document.getElementById("content").style.display = "block";
         }else{
@@ -134,5 +127,19 @@ li span {
         }
         //seconds
       }, 0)
-  }());</script>
+  }
+    var countdown = 0;
+    var init = false;
+    setInterval(async ()=>{
+        js = await fetch("./data.json");
+        l = await js.text()
+        countdown = JSON.parse( l.replaceAll("\n", "")).time
+    }, 1000);
+    setInterval(()=>{
+      if(countdown != 0 && init == false ){
+        init = true;
+        initialize();
+      }
+  }, 1000)
+</script>
 </body>
